@@ -1,10 +1,10 @@
 # Wabanex
 
-This is a project developed during NWL Together, a Brazilian programming event with a strong appeal for practice and the community.
-
 Wabanex is a platform to help people who seek to improve their quality of life through training and exercise.
 
--
+This is a project developed during NWL Together, a Brazilian programming event with a strong appeal for practice and the community.
+
+---
 
 To start your Phoenix server:
 
