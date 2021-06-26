@@ -3,6 +3,8 @@ defmodule WabanexWeb.UserSocket do
 
   ## Channels
   # channel "room:*", WabanexWeb.RoomChannel
+  # channel "room:*", WabanexWeb.RoomChannel
+  # channel "room:*", WabanexWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
