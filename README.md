@@ -1,5 +1,9 @@
 # Wabanex
 
+This is a project developed during NWL Together, a Brazilian programming event with a strong appeal for practice and the community.
+
+---
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
