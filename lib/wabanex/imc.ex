@@ -1,31 +1,25 @@
 defmodule Wabanex.IMC do
-  def calculate(%{"filename" => filename}) do
-    filename
-    |> File.read()
-    |> handle_file()
+  alias Ecto.UUID
+  alias Wabanex.{Repo, User}
+
+  def calculate(id) do
+    id
+    |> UUID.cast()
+    |> handle_response()
   end
 
-  defp handle_file({:ok, content}) do
-    data =
-      content
-      |> String.split("\n")
-      |> Enum.map(fn line -> parse_line(line) end)
-      |> Enum.into(%{})
-
-    {:ok, data}
+  defp handle_response(:error) do
+    {:error, "Invalid UUID"}
   end
 
-  defp handle_file({:error, _reason}) do
-    {:error, "Error while opening the file"}
+  defp handle_response({:ok, uuid}) do
+    case Repo.get(User, uuid) do
+      nil -> {:error, "User not found"}
+      user -> {:ok, calculate_imc(user)}
+    end
   end
 
-  defp parse_line(line) do
-    line
-    |> String.split(",")
-    |> List.update_at(1, &String.to_float/1)
-    |> List.update_at(2, &String.to_float/1)
-    |> calculate_imc()
+  defp calculate_imc(%{name: name, height: height, weight: weight}) do
+    {name, weight / (height * height)}
   end
-
-  defp calculate_imc([name, height, weigth]), do: {name, weigth / (height * height)}
 end

@@ -15,7 +15,7 @@ defmodule Wabanex.Exercises do
     field :repetitions, :string
     field :youtube_video_url, :string
 
-    belongs_to :traning, Training
+    belongs_to :training, Training
 
     timestamps()
   end
