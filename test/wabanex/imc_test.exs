@@ -2,30 +2,25 @@ defmodule Wabanex.IMCTest do
   use ExUnit.Case, async: true
 
   describe "calculate/1" do
-    test "When the file exists, returs the data" do
-      params = %{"filename" => "students.csv"}
+    test "When the user id is valid, returs the data" do
+      params = %{name: "Sasuke", height: 1.78, weight: 71}
 
-      response = Wabanex.IMC.calculate(params)
+      response = Wabanex.IMC.calculate_imc(params)
 
       expected_response = {
-        :ok,
-        %{
-          "Adroaldo" => 23.37472607742878,
-          "Ivone" => 20.811654526534856,
-          "Matheus" => 16.787190082644628,
-          "Nathascha" => 20.307412205454995
-        }
+        "Sasuke",
+        22.408786769347305
       }
 
       assert response == expected_response
     end
 
     test "When the wrong file name is given, return an error" do
-      params = %{"filename" => "sasuke.csv"}
+      params = "id_invalid"
 
       response = Wabanex.IMC.calculate(params)
 
-      expected_response = {:error, "Error while opening the file"}
+      expected_response = {:error, "Invalid UUID"}
 
       assert response == expected_response
     end

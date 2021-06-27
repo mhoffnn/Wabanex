@@ -6,7 +6,15 @@ defmodule WabanexWeb.SchemaTest do
 
   describe "users queries" do
     test "when a valid id is given, returns the user", %{conn: conn} do
-      params = %{email: "sasuke@uchiha.com", name: "Sasuke", password: "naruto123"}
+      params = %{
+        name: "Sasuke",
+        email: "sasuke@uchiha.com",
+        password: "naruto123",
+        age: 20,
+        height: 1.78,
+        weight: 62,
+        training_goal: "bodybuilding"
+      }
 
       {:ok, %User{id: user_id}} = Create.call(params)
 
@@ -42,7 +50,13 @@ defmodule WabanexWeb.SchemaTest do
       mutation = """
         mutation {
           createUser(input: {
-            name: "Naruto", email: "naruto@uzumaki.com", password: "sasuke123"
+            name: "Sasuke",
+            email: "sasuke@uchiha.com",
+            password: "naruto123",
+            age: 20,
+            height: 1.78,
+            weight: 62,
+            training_goal: "bodybuilding"
           }){
             id
             name
@@ -59,7 +73,7 @@ defmodule WabanexWeb.SchemaTest do
                "data" => %{
                  "createUser" => %{
                    "id" => _id,
-                   "name" => "Naruto"
+                   "name" => "Sasuke"
                  }
                }
              } = response

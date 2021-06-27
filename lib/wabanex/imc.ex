@@ -19,7 +19,7 @@ defmodule Wabanex.IMC do
     end
   end
 
-  defp calculate_imc(%{name: name, height: height, weight: weight}) do
+  def calculate_imc(%{name: name, height: height, weight: weight}) do
     {name, weight / (height * height)}
   end
 end
